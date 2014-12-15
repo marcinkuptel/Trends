@@ -20,12 +20,12 @@ class MKWordListProviderFactory: NSObject {
     private class func createWordProvider() -> MKWordListProvider
     {
         let operationQueue: NSOperationQueue = NSOperationQueue()
-        operationQueue.maxConcurrentOperationCount = 1
         let operationFactory: MKReviewPageDownloadOperationFactory = MKReviewPageDownloadOperationFactory()
         let downloader: MKReviewDownloader = MKReviewDownloader(queue: operationQueue, operationFactory: operationFactory, store: "us", appID: "911813648")
         let analyzer: MKReviewAnalyzer = MKReviewAnalyzer()
         let dataConverter: MKReviewDataConverter = MKReviewDataConverter()
-        let provider = MKWordListProvider(reviewDownloader: downloader, reviewAnalyzer: analyzer, dataConverter: dataConverter)
+        let coreDataReviewProvider: MKCoreDataReviewProvider = MKCoreDataReviewProvider()
+        let provider = MKWordListProvider(reviewDownloader: downloader, reviewAnalyzer: analyzer, dataConverter: dataConverter, coreDataReviewProvider: coreDataReviewProvider)
         downloader.delegate = provider
         return provider
     }

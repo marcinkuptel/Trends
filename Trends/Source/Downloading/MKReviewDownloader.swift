@@ -14,7 +14,7 @@ class MKReviewDownloader: NSObject {
     private let operationFactory: MKReviewPageDownloadOperationFactory
     private let store: String
     private let appID: String
-    private let numberOfPages: Int = 5
+    private let numberOfPages: Int = 10
     private var responses: Dictionary<Int, NSData>
     var delegate: MKReviewDownloaderDelegate?
     
@@ -30,6 +30,14 @@ class MKReviewDownloader: NSObject {
     
     func downloadReviewAllReviewPages()
     {
+        let completion = {
+            () -> () in
+            if let delegate = self.delegate {
+                delegate.reviewsDownloaded(self.responses)
+            }
+        }
+        let blockOperation = NSBlockOperation(block: completion)
+        
         for x in 1...numberOfPages
         {
             let url: NSURL = MKReviewURL.reviewURL(self.appID, page: x, store: self.store)
@@ -43,15 +51,9 @@ class MKReviewDownloader: NSObject {
                 }
             }
             self.queue.addOperation(operation)
+            blockOperation.addDependency(operation)
         }
         
-        let completion = {
-            () -> () in
-            if let delegate = self.delegate {
-                delegate.reviewsDownloaded(self.responses)
-            }
-        }
-        let blockOperation = NSBlockOperation(block: completion)
         self.queue.addOperation(blockOperation)
     }
 }

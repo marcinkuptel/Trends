@@ -10,7 +10,7 @@ import UIKit
 
 class MKReviewAnalyzer: NSObject {
    
-    class func mostUsedWords(count: Int, reviews: [MKReview]) -> [(String, Int)]
+    class func mostUsedWords(count: Int, reviews: [MKReviewData]) -> [(String, Int)]
     {
         let res = reviews.reduce(Dictionary<String, Int>(), combine: { (var dict: Dictionary<String, Int>, review) in
             
