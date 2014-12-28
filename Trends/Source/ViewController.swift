@@ -26,7 +26,7 @@ class ViewController: UIViewController, MKWordListProviderDelegate, UITableViewD
     }
     
     //MKWordListProviderDelegate
-    func wordListFetched(wordList: Array<(String, Int)>)
+    func wordListFetched(wordList: [(String, Int)])
     {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.tableView.reloadData()

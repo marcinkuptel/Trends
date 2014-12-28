@@ -28,6 +28,9 @@
 		09868E011A3E4A9600B02F0C /* TrendsDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 09868DFF1A3E4A9600B02F0C /* TrendsDataModel.xcdatamodeld */; };
 		09868E031A3E4D2900B02F0C /* MKCoreDataReviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09868E021A3E4D2900B02F0C /* MKCoreDataReviewProvider.swift */; };
 		09868E071A3E544A00B02F0C /* MKReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 09868E061A3E544A00B02F0C /* MKReview.m */; };
+		098B98571A5028F900CD4A31 /* MKWord.m in Sources */ = {isa = PBXBuildFile; fileRef = 098B98561A5028F900CD4A31 /* MKWord.m */; };
+		098B985C1A502C1000CD4A31 /* MKManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098B985B1A502C1000CD4A31 /* MKManagedObjectContext.swift */; };
+		098B98601A5052AF00CD4A31 /* MKCoreDataWordListProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098B985F1A5052AF00CD4A31 /* MKCoreDataWordListProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,10 +67,14 @@
 		09868DFA1A3DF20200B02F0C /* MKWordListProviderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MKWordListProviderDelegate.swift; path = "Source/Word list provider/MKWordListProviderDelegate.swift"; sourceTree = "<group>"; };
 		09868DFC1A3E023E00B02F0C /* MKReviewDownloaderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MKReviewDownloaderDelegate.swift; path = Source/Downloading/MKReviewDownloaderDelegate.swift; sourceTree = "<group>"; };
 		09868E001A3E4A9600B02F0C /* TrendsDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TrendsDataModel.xcdatamodel; sourceTree = "<group>"; };
-		09868E021A3E4D2900B02F0C /* MKCoreDataReviewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MKCoreDataReviewProvider.swift; path = Source/Persistence/MKCoreDataReviewProvider.swift; sourceTree = "<group>"; };
+		09868E021A3E4D2900B02F0C /* MKCoreDataReviewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MKCoreDataReviewProvider.swift; path = Source/Persistence/Providers/MKCoreDataReviewProvider.swift; sourceTree = "<group>"; };
 		09868E041A3E544A00B02F0C /* Trends-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Trends-Bridging-Header.h"; sourceTree = "<group>"; };
-		09868E051A3E544A00B02F0C /* MKReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKReview.h; path = Source/Persistence/MKReview.h; sourceTree = "<group>"; };
-		09868E061A3E544A00B02F0C /* MKReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKReview.m; path = Source/Persistence/MKReview.m; sourceTree = "<group>"; };
+		09868E051A3E544A00B02F0C /* MKReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKReview.h; path = "Source/Persistence/Data model/MKReview.h"; sourceTree = "<group>"; };
+		09868E061A3E544A00B02F0C /* MKReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKReview.m; path = "Source/Persistence/Data model/MKReview.m"; sourceTree = "<group>"; };
+		098B98551A5028F900CD4A31 /* MKWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKWord.h; path = "Source/Persistence/Data model/MKWord.h"; sourceTree = "<group>"; };
+		098B98561A5028F900CD4A31 /* MKWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKWord.m; path = "Source/Persistence/Data model/MKWord.m"; sourceTree = "<group>"; };
+		098B985B1A502C1000CD4A31 /* MKManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MKManagedObjectContext.swift; path = Source/Persistence/MKManagedObjectContext.swift; sourceTree = "<group>"; };
+		098B985F1A5052AF00CD4A31 /* MKCoreDataWordListProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MKCoreDataWordListProvider.swift; path = Source/Persistence/Providers/MKCoreDataWordListProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,13 +183,33 @@
 		09868DFE1A3E4A4200B02F0C /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				098B985E1A50528000CD4A31 /* Providers */,
+				098B985D1A50525400CD4A31 /* Data model */,
 				09868DFF1A3E4A9600B02F0C /* TrendsDataModel.xcdatamodeld */,
-				09868E051A3E544A00B02F0C /* MKReview.h */,
-				09868E061A3E544A00B02F0C /* MKReview.m */,
-				09868E021A3E4D2900B02F0C /* MKCoreDataReviewProvider.swift */,
+				098B985B1A502C1000CD4A31 /* MKManagedObjectContext.swift */,
 				09868E041A3E544A00B02F0C /* Trends-Bridging-Header.h */,
 			);
 			name = Persistence;
+			sourceTree = "<group>";
+		};
+		098B985D1A50525400CD4A31 /* Data model */ = {
+			isa = PBXGroup;
+			children = (
+				098B98551A5028F900CD4A31 /* MKWord.h */,
+				098B98561A5028F900CD4A31 /* MKWord.m */,
+				09868E051A3E544A00B02F0C /* MKReview.h */,
+				09868E061A3E544A00B02F0C /* MKReview.m */,
+			);
+			name = "Data model";
+			sourceTree = "<group>";
+		};
+		098B985E1A50528000CD4A31 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				09868E021A3E4D2900B02F0C /* MKCoreDataReviewProvider.swift */,
+				098B985F1A5052AF00CD4A31 /* MKCoreDataWordListProvider.swift */,
+			);
+			name = Providers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,7 +313,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				096717D01A3CFCF700B1F353 /* MKReviewPageDownloadOperationFactory.swift in Sources */,
+				098B98571A5028F900CD4A31 /* MKWord.m in Sources */,
 				09868E031A3E4D2900B02F0C /* MKCoreDataReviewProvider.swift in Sources */,
+				098B985C1A502C1000CD4A31 /* MKManagedObjectContext.swift in Sources */,
 				09868DFB1A3DF20200B02F0C /* MKWordListProviderDelegate.swift in Sources */,
 				096717C71A3C72E500B1F353 /* MKReviewAnalyzer.swift in Sources */,
 				09868DFD1A3E023E00B02F0C /* MKReviewDownloaderDelegate.swift in Sources */,
@@ -301,6 +330,7 @@
 				09868DF91A3DEDD100B02F0C /* MKWordListProviderFactory.swift in Sources */,
 				09868E011A3E4A9600B02F0C /* TrendsDataModel.xcdatamodeld in Sources */,
 				096717CE1A3CFAA500B1F353 /* MKReviewURL.swift in Sources */,
+				098B98601A5052AF00CD4A31 /* MKCoreDataWordListProvider.swift in Sources */,
 				096717D21A3D0A0000B1F353 /* MKDownloadReviewPageOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

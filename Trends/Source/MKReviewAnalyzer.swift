@@ -10,7 +10,7 @@ import UIKit
 
 class MKReviewAnalyzer: NSObject {
    
-    class func mostUsedWords(count: Int, reviews: [MKReviewData]) -> [(String, Int)]
+    class func mostUsedWords(count: Int, reviews: [MKReviewData]) -> [String:Int]
     {
         let res = reviews.reduce(Dictionary<String, Int>(), combine: { (var dict: Dictionary<String, Int>, review) in
             
@@ -40,14 +40,6 @@ class MKReviewAnalyzer: NSObject {
             return dict
         })
         
-        var tuples: Array<(String, Int)> = Array<(String, Int)>()
-
-        for (key, value) in res {
-            tuples += [(key, value)]
-        }
-        
-        tuples.sort { $0.1 > $1.1 }
-        
-        return tuples
+        return res
     }
 }

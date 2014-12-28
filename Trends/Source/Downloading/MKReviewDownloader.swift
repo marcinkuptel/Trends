@@ -28,7 +28,7 @@ class MKReviewDownloader: NSObject {
         super.init()
     }
     
-    func downloadReviewAllReviewPages()
+    func downloadAllReviewPages()
     {
         let completion = {
             () -> () in
@@ -45,9 +45,13 @@ class MKReviewDownloader: NSObject {
             operation.completion = {
                 (response: NSData?, error: NSError?) -> (Void) in
                 if let downloadError = error {
-                    
+                    println("Error while downloading reviews: \(downloadError)")
+                    self.delegate?.reviewPageDownloadFailed(x, error: downloadError)
                 } else {
-                   self.responses[x] = response
+                    self.responses[x] = response
+                    if let unwrappedResponse = response {
+                        self.delegate?.reviewPageDownloaded(x, data: unwrappedResponse)
+                    }
                 }
             }
             self.queue.addOperation(operation)

@@ -11,10 +11,18 @@ import UIKit
 class MKWordListProviderFactory: NSObject {
    
     class var wordListProvider: MKWordListProvider {
+        
         struct Singleton {
-            static let instance = MKWordListProviderFactory.createWordProvider()
+            static var instance: MKWordListProvider?
+            static var token: dispatch_once_t = 0
         }
-        return Singleton.instance
+        
+        dispatch_once(&Singleton.token, { () -> Void in
+            Singleton.instance = MKWordListProviderFactory.createWordProvider()
+            return
+        })
+        
+        return Singleton.instance!
     }
     
     private class func createWordProvider() -> MKWordListProvider
@@ -24,8 +32,9 @@ class MKWordListProviderFactory: NSObject {
         let downloader: MKReviewDownloader = MKReviewDownloader(queue: operationQueue, operationFactory: operationFactory, store: "us", appID: "911813648")
         let analyzer: MKReviewAnalyzer = MKReviewAnalyzer()
         let dataConverter: MKReviewDataConverter = MKReviewDataConverter()
-        let coreDataReviewProvider: MKCoreDataReviewProvider = MKCoreDataReviewProvider()
-        let provider = MKWordListProvider(reviewDownloader: downloader, reviewAnalyzer: analyzer, dataConverter: dataConverter, coreDataReviewProvider: coreDataReviewProvider)
+        
+        let coreDataWordListProvider: MKCoreDataWordListProvider = MKCoreDataWordListProvider(context: MKManagedObjectContext.context())
+        let provider = MKWordListProvider(reviewDownloader: downloader, reviewAnalyzer: analyzer, dataConverter: dataConverter, coreDataWordListProvider: coreDataWordListProvider)
         downloader.delegate = provider
         return provider
     }

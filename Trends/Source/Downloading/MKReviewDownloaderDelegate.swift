@@ -11,4 +11,6 @@ import Foundation
 protocol MKReviewDownloaderDelegate
 {
     func reviewsDownloaded(pages: Dictionary<Int, NSData>)
+    func reviewPageDownloaded(pageNumber: Int, data: NSData)
+    func reviewPageDownloadFailed(pageNumber: Int, error: NSError)
 }
